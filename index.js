@@ -66,6 +66,14 @@ app.post('/bookings', async (req, res) => {
   res.send(result);
 });
 
+// auth related
+app.post('/jwt', async(req,res)=>{
+  const user=req.body;
+  console.log(user);
+  const token=jwt.sign(user,'secret',{expiresIn:'1h'})
+  res.send(token)
+})
+
 app.patch('/bookings/:id', async (req, res) => {
   const id = req.params.id;
   const filter = { _id: new ObjectId(id) };
